@@ -6,9 +6,10 @@
         <span class="font-weight-light">Countries</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-text-field v-model="searchQuery"></v-text-field>
       <v-btn
         text
-        href="#"
+        @click="search(searchQuery)"
       >
         <span class="mr-2">Поиск</span>
       </v-btn>
@@ -21,10 +22,19 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
-  name: 'App',
-  data: () => ({
-    //
-  }),
+    name: 'App',
+    data () {
+        return {
+            searchQuery: ''
+        }
+    },
+    methods: {
+        ...mapActions({
+            search: 'search'
+        })
+    }
 };
 </script>

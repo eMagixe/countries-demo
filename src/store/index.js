@@ -18,19 +18,27 @@ export default new Vuex.Store({
     mutations: {
         setPosts (state, posts) {
             state.posts = posts
+        },
+        searchPosts (state, query) {
+            state.posts = state.posts.filter((post) => {
+                return post.title.indexOf(query) !== -1 || false
+            })
         }
     },
     actions: {
-        uploadData ({commit,state}) {
+        upload ({commit, state}) {
             axios
                 .get(state.proxi + state.api)
                 .then(response => {
-                        console.log(response.data.data)
                         commit('setPosts', response.data.data)
                     })
                 .catch(error => {
-                    console.log(error);
+                    console.error(error);
                     })
+        },
+        search ({commit, dispatch}, query) {
+            if(query === '') dispatch('upload')
+            else commit('searchPosts', query)
         }
     }
 })

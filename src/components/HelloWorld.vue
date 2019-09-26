@@ -12,7 +12,7 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
     methods: {
         ...mapActions({
-            upload: 'uploadData'
+            upload: 'upload'
         })
     },
     created () {
