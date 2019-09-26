@@ -1,25 +1,27 @@
 <template>
     <v-container>
-        <div v-for="post in uploadPosts" :key="post.id">
-            {{ post.title }}
+        <div v-for="post in posts" :key="post.id">
+            {{ post.id }} - {{ post.title }}
         </div>
     </v-container>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
-    data () {
-        return {
-            posts: []
-        }
+    methods: {
+        ...mapActions({
+            upload: 'uploadData'
+        })
     },
     created () {
-        this.$store.dispatch('uploadData')
+        this.upload()
     },
     computed: {
-        uploadPosts () {
-            return this.$store.getters.getPosts
-        }
+        ...mapGetters({
+            posts: 'getPosts'
+        })
     }
 }
 </script>

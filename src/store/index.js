@@ -25,6 +25,7 @@ export default new Vuex.Store({
             axios
                 .get(state.proxi + state.api)
                 .then(response => {
+                        console.log(response.data.data)
                         commit('setPosts', response.data.data)
                     })
                 .catch(error => {
