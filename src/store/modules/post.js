@@ -4,11 +4,15 @@ export default {
     state: {
         proxi: 'https://cors-anywhere.herokuapp.com/',
         api: 'https://travelus.fun/api/v1/countries',
-        posts: []
+        posts: [],
+        current: {}
     },
     getters: {
         getAll: (state) => {
             return state.posts
+        },
+        getCurrent: (state) => {
+            return state.current
         }
     },
     mutations: {
@@ -27,11 +31,15 @@ export default {
                     .get(state.proxi + 'http://45.12.18.189/posts')
                     .then(response => {
                         commit('setPosts', response.data)
-                        console.log(response.data)
                     })
                     .catch(error => {
                         console.error(error)
                     })
+        },
+        show ({state}, id) {
+            state.current = state.posts.filter((post) => {
+                return post.id == id || false
+            })
         },
         create ({state}, post) {
             axios
@@ -48,7 +56,6 @@ export default {
             .delete(state.proxi + 'http://45.12.18.189/post/' + id)
             .then(response => {
                 dispatch('upload')
-                console.log('Delete post id: ' + id)
                 console.log(response)
             })
             .catch(error => {

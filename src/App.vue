@@ -11,7 +11,7 @@
         <v-col cols="12" sm="6" md="3">
             <v-text-field
                 v-model="searchQuery"
-                @input.enter="search(searchQuery)"
+                @keyup.enter="searchCountry(searchQuery)"
                 hide-details
                 prepend-icon="mdi-magnify"
                 single-line
@@ -39,9 +39,13 @@ export default {
         }
     },
     methods: {
-        ...mapActions({
+        ...mapActions ({
             search: 'search'
-        })
+        }),
+        searchCountry(searchQuery) {
+            this.search(searchQuery)
+           this.$router.push('/')
+        }
     }
 };
 </script>

@@ -1,10 +1,15 @@
 <template>
   <v-container>
-        <h1>Add new Post</h1>
+        <h2>Add new Country post</h2>
         <v-form  v-model="valid" >
             <v-text-field
             v-model="post.title"
             label="Title"
+            :rules="rules"
+            ></v-text-field>
+            <v-text-field
+            v-model="post.image"
+            label="Image"
             :rules="rules"
             ></v-text-field>
             <v-text-field
@@ -36,6 +41,7 @@ export default {
     data () {
         return {
             post: {
+                        image: '',
                         title: '',
                         slug: '',
                         description: '',
