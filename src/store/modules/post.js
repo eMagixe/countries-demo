@@ -3,7 +3,7 @@ import axios from 'axios'
 export default {
     state: {
         proxi: 'https://cors-anywhere.herokuapp.com/',
-        api: 'https://travelus.fun/api/v1/countries',
+        api: 'http://45.12.18.189',
         posts: [],
         current: {}
     },
@@ -28,7 +28,7 @@ export default {
     actions: {
         upload ({commit, state}) {
                     axios
-                    .get(state.proxi + 'http://45.12.18.189/posts')
+                    .get(state.proxi + state.api + '/posts')
                     .then(response => {
                         commit('setPosts', response.data)
                     })
@@ -43,17 +43,27 @@ export default {
         },
         create ({state}, post) {
             axios
-                .post(state.proxi + 'http://45.12.18.189/create/post', post)
+                .post(state.proxi + state.api + '/create/post', post)
                 .then((response) => {
                     console.log(response)
                 })
                 .catch((error) => {
                     console.log(error)
-                });
+                })
+        },
+        update ({state}, post) {
+            axios
+            .post(state.proxi + state.api + '/update/' + post.id, post)
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
         },
         destroy ({state, dispatch}, id) {
             axios
-            .delete(state.proxi + 'http://45.12.18.189/post/' + id)
+            .delete(state.proxi + state.api + '/post/' + id)
             .then(response => {
                 dispatch('upload')
                 console.log(response)

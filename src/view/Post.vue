@@ -23,6 +23,7 @@
             </v-card-text>
 
             <v-card-actions>
+                <v-btn :to="'/update/' + view.id" text>Редактировать</v-btn>
                 <v-btn
                 text
                 color="purple"
@@ -48,7 +49,6 @@ export default {
         this.show(this.$route.params.id)
         let currentPosts = this.$store.getters.getCurrent
         if(currentPosts[0]) this.view  = currentPosts[0]
-        console.log(this.view)
     },
     methods: {
         ...mapActions({
