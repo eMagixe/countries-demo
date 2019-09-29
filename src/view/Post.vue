@@ -52,7 +52,8 @@ export default {
     },
     methods: {
         ...mapActions({
-            show:'show'
+            show:'show',
+            destroy: 'destroy'
         })
     }
 }

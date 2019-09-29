@@ -31,8 +31,7 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
     methods: {
         ...mapActions({
-            upload: 'upload',
-            destroy: 'destroy'
+            upload: 'upload'
         })
     },
     created () {
