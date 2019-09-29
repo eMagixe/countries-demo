@@ -6,7 +6,7 @@
                 v-for="post in posts" :key="post.id"
             >
             <v-img
-                :src="'http://travelus.fun/' + post.arcane_seo_options.og_ref_image"
+                src="https://helpx.adobe.com/content/dam/help/en/stock/how-to/visual-reverse-image-search/jcr_content/main-pars/image/visual-reverse-image-search-v2_intro.jpg"
                 height="200px"
             ></v-img>
 
@@ -15,17 +15,18 @@
             </v-card-title>
 
             <v-card-text>
-                <p class="grey--text subtitle-1">{{ post.excerpt }}</p>
+                <p class="grey--text subtitle-1">{{ post.description }}</p>
             </v-card-text>
 
             <v-card-actions>
-                <v-btn text>Share</v-btn>
+                <v-btn text>Редактировать</v-btn>
 
                 <v-btn
                 text
                 color="purple"
+                @click="destroy(post.id)"
                 >
-                Explore
+                Удалить
                 </v-btn>
 
                 <div class="flex-grow-1"></div>
@@ -40,7 +41,7 @@
 
             <v-expand-transition>
                 <div v-show="show">
-                <v-card-text v-html="post.content_html">
+                <v-card-text v-html="post.content">
                 </v-card-text>
                 </div>
             </v-expand-transition>
@@ -59,10 +60,14 @@ export default {
     },
     methods: {
         ...mapActions({
-            upload: 'upload'
+            upload: 'upload',
+            destroy: 'destroy'
         })
     },
     created () {
+        this.upload()
+    },
+    updated () {
         this.upload()
     },
     computed: {

@@ -23,15 +23,37 @@ export default {
     },
     actions: {
         upload ({commit, state}) {
+                    axios
+                    .get(state.proxi + 'http://45.12.18.189/posts')
+                    .then(response => {
+                        commit('setPosts', response.data)
+                        console.log(response.data)
+                    })
+                    .catch(error => {
+                        console.error(error)
+                    })
+        },
+        create ({state}, post) {
             axios
-                .get(state.proxi + state.api)
-                .then(response => {
-                        commit('setPosts', response.data.data)
-                        console.log(response.data.data)
-                    })
-                .catch(error => {
-                    console.error(error);
-                    })
+                .post(state.proxi + 'http://45.12.18.189/create/post', post)
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+        },
+        destroy ({state, dispatch}, id) {
+            axios
+            .delete(state.proxi + 'http://45.12.18.189/post/' + id)
+            .then(response => {
+                dispatch('upload')
+                console.log('Delete post id: ' + id)
+                console.log(response)
+            })
+            .catch(error => {
+                console.error(error)
+            })
         },
         search ({commit, dispatch}, query) {
             if(query === '') dispatch('upload')

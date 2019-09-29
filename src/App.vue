@@ -1,18 +1,25 @@
 <template>
   <v-app>
-    <v-app-bar app>
+    <v-app-bar dark app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>Demo</span>
-        <span class="font-weight-light">Countries</span>
+          <router-link to="/" tag="div" style="cursor:pointer">
+            <span>Demo</span>
+            <span class="font-weight-light">Countries</span>
+        </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-text-field v-model="searchQuery"></v-text-field>
-      <v-btn
-        text
-        @click="search(searchQuery)"
-      >
-        <span class="mr-2">Поиск</span>
-      </v-btn>
+        <v-col cols="12" sm="6" md="3">
+            <v-text-field
+                v-model="searchQuery"
+                @input.enter="search(searchQuery)"
+                hide-details
+                prepend-icon="mdi-magnify"
+                single-line
+            ></v-text-field>
+        </v-col>
+        <v-btn to="/add" class="mx-2" small outlined fab>
+            <v-icon dark>mdi-plus</v-icon>
+        </v-btn>
     </v-app-bar>
 
     <v-content>

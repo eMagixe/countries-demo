@@ -1,8 +1,13 @@
-import HelloWorld from '../components/HelloWorld.vue'
+import Posts from '../view/Posts.vue'
+import Add from '../view/Add.vue'
 
 export default [
     {
         path:'/',
-        component: HelloWorld
+        component: Posts
+    },
+    {
+        path: '/add',
+        component: Add
     }
 ]
