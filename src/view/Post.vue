@@ -27,7 +27,7 @@
                 <v-btn
                 text
                 color="purple"
-                @click="destroy(view.id)"
+                @click="deletePost"
                 >
                 Удалить
                 </v-btn>
@@ -54,7 +54,11 @@ export default {
         ...mapActions({
             show:'show',
             destroy: 'destroy'
-        })
+        }),
+        deletePost() {
+            this.destroy(this.view.id)
+            this.$router.push('/')
+        }
     }
 }
 </script>
