@@ -41,11 +41,12 @@ export default {
                 return post.id == id || false
             })
         },
-        create ({state}, post) {
+        create ({state, dispatch}, post) {
             axios
                 .post(state.proxi + state.api + '/create/post', post)
                 .then((response) => {
                     console.log(response)
+                    dispatch('upload')
                 })
                 .catch((error) => {
                     console.log(error)

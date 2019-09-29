@@ -67,6 +67,7 @@ export default {
         }),
         updatePost () {
             this.update(this.post)
+            this.$router.push('/post/' + this.post.id)
         }
     }
 }
