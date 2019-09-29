@@ -22,7 +22,7 @@
         </v-btn>
     </v-app-bar>
 
-    <v-content>
+    <v-content  xs="12" sm="6" md="3">
       <router-view></router-view>
     </v-content>
   </v-app>
