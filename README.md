@@ -1,5 +1,7 @@
 # countries-demo
 
+Demo project for (https://emagixe.github.io)
+
 ## Project setup
 ```
 npm install
